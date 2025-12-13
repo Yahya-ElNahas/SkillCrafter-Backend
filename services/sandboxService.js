@@ -63,6 +63,7 @@ exports.runTestCases = async function (code, problem, language) {
     if (output !== testCase.output.trim()) {
       allPassed = false;
     }
+    console.log(`Test: input ${JSON.stringify(testCase.input)}, expected "${testCase.output.trim()}", got "${output}", error: ${testError}`)
     console.log(allPassed)
     outputs.push({
       input: testCase.input,
