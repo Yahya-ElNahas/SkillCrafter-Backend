@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 app.use(cors({
-    origin: ["http://localhost:5173", "https://skill-crafter-nine.vercel.app"], 
+    origin: true, 
     credentials: true
 }));
 app.use(express.json());
