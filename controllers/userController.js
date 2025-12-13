@@ -123,7 +123,7 @@ exports.loginUser = async (req, res) => {
     const safeUser = user.toObject();
     delete safeUser.password;
 
-    res.json({ message: 'Login successful', version: user.version });
+    res.json({ message: 'Login successful', version: user.version, token });
   } catch (error) {
     console.error('Error logging in user:', error);
     res.status(500).json({ message: 'Internal server error' });
