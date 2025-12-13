@@ -25,32 +25,38 @@ exports.runTestCases = async function (code, problem, language) {
     }
 
     if (language === 'java') {
-      const tmp = require('tmp');
-      const tmpDir = tmp.dirSync();
-      const className = 'Solution';
-      const javaFile = path.join(tmpDir.name, `${className}.java`);
-
-      let javaSource = code;
-
-      fs.writeFileSync(javaFile, javaSource);
-      const compile = spawnSync('javac', [javaFile], { encoding: 'utf-8' });
-      if (compile.status !== 0) {
-        testError = compile.stderr.trim();
-        output = '';
-        const files = fs.readdirSync(tmpDir.name);
-        for (const file of files) fs.unlinkSync(path.join(tmpDir.name, file));
-        tmpDir.removeCallback();
-      } else {
-        const run = spawnSync('java', ['-cp', tmpDir.name, className], {
-          input: inputString,
-          encoding: 'utf-8',
-          timeout: 2000
+      try {
+        const response = await fetch('https://api.jdoodle.com/v1/execute', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientId: process.env.JDOODLE_CLIENT_ID,
+            clientSecret: process.env.JDOODLE_CLIENT_SECRET,
+            script: code,
+            language: 'java',
+            versionIndex: '3',
+            stdin: inputString
+          })
         });
-        output = run.stdout.trim().replace(/\r\n/g, '\n');
-        testError = run.stderr.trim();
-        const files = fs.readdirSync(tmpDir.name);
-        for (const file of files) fs.unlinkSync(path.join(tmpDir.name, file));
-        tmpDir.removeCallback();
+        const result = await response.json();
+        if (result.statusCode === 200) {
+          output = result.output.trim().replace(/\r\n/g, '\n');
+        } else {
+          testError = result.output || 'Execution failed';
+        }
+      } catch (err) {
+        testError = 'JDoodle API error: ' + err.message;
+      }
+    } else if (language === 'python') {
+      const run = spawnSync('python', ['-c', code], { input: inputString, encoding: 'utf-8', timeout: 2000 });
+      output = run.stdout ? run.stdout.trim().replace(/\r\n/g, '\n') : '';
+      testError = run.stderr ? run.stderr.trim() : null;
+    } else if (language === 'javascript') {
+      try {
+        const vm = new VM({ timeout: 2000, sandbox: { input, print, console: { log: print } } });
+        vm.run(code);
+      } catch (err) {
+        testError = err.message;
       }
     }
 
