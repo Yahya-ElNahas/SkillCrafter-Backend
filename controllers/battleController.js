@@ -16,7 +16,8 @@ const rlAgent = new RLAgent();
 exports.initiateBattle = async (req, res) => {
   const { attacker, defender, topic, position, problem } = req.body;
 
-  const token =  req.cookies.token;
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : req.cookies.token;
   if (!token) return res.status(401).json({ error: "Authentication required" });
   let decodedToken;
   try {
@@ -209,7 +210,8 @@ exports.initiateBattle = async (req, res) => {
 exports.runSolution = async (req, res) => {
   const { code, problem, attacker, defender, position, language, surrender, rlState, rlAction } = req.body;
 
-  const token =  req.cookies.token;
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : req.cookies.token;
   if (!token) return res.status(401).json({ error: "Authentication required" });
   let decodedToken;
   try {
@@ -942,7 +944,8 @@ exports.runSolution = async (req, res) => {
 exports.getHint = async (req, res) => {
   const { problem, code } = req.body;
   
-  const token =  req.cookies.token;
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : req.cookies.token;
   if (!token) return res.status(401).json({ error: "Authentication required" });
   let decodedToken;
   try {
