@@ -35,7 +35,7 @@ exports.runTestCases = async function (code, problem, language) {
       fs.writeFileSync(javaFile, javaSource);
       const compile = spawnSync('javac', [javaFile], { encoding: 'utf-8' });
       if (compile.status !== 0) {
-        testError = compile.stderr.trim();
+        testError = compile.stderr ? compile.stderr.trim() : 'Compilation failed';
         output = '';
         const files = fs.readdirSync(tmpDir.name);
         for (const file of files) fs.unlinkSync(path.join(tmpDir.name, file));
@@ -46,8 +46,8 @@ exports.runTestCases = async function (code, problem, language) {
           encoding: 'utf-8',
           timeout: 2000
         });
-        output = run.stdout.trim().replace(/\r\n/g, '\n');
-        testError = run.stderr.trim();
+        output = run.stdout ? run.stdout.trim().replace(/\r\n/g, '\n') : '';
+        testError = run.stderr ? run.stderr.trim() : 'Runtime error';
         const files = fs.readdirSync(tmpDir.name);
         for (const file of files) fs.unlinkSync(path.join(tmpDir.name, file));
         tmpDir.removeCallback();
