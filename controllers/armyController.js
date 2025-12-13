@@ -6,8 +6,8 @@ const { getProvincesWithControllers } = require("./provinceController");
 
 exports.getArmies = async (req, res) => {
   try {
-    const token =  (req.cookies && req.cookies.token) ||
-                   (req.headers && req.headers.authorization ? req.headers.authorization.replace(/^Bearer\s+/i, '') : null);
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : req.cookies.token;
     if (!token) return res.status(401).json({ error: "Authentication required" });
     let decodedToken;
     try {
@@ -33,8 +33,8 @@ exports.moveDivision = async (req, res) => {
   try {
     const { divisionId, position } = req.body;
 
-    const token =  (req.cookies && req.cookies.token) ||
-                   (req.headers && req.headers.authorization ? req.headers.authorization.replace(/^Bearer\s+/i, '') : null);
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.startsWith('Bearer ') ? authHeader.substring(7) : req.cookies.token;
     if (!token) return res.status(401).json({ error: "Authentication required" });
     let decodedToken;
     try {
