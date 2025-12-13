@@ -1,7 +1,7 @@
 FROM node:18
 
-# Install OpenJDK 11
-RUN apt-get update && apt-get install -y openjdk-11-jdk
+# Install OpenJDK 17 (available in Debian bookworm)
+RUN apt-get update && apt-get install -y openjdk-17-jdk
 
 # Set working directory
 WORKDIR /app
