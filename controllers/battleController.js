@@ -871,7 +871,7 @@ exports.runSolution = async (req, res) => {
 
     Respond with only the feedback text, no extra formatting and prioritize low amount of text but also clarity.
   `;
-
+  console.log(performance.attempts);
   let feedback;
   if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
   if(turn.version != 2 && performance.attempts % 3 == 0) {
