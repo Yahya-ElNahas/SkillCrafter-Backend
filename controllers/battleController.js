@@ -353,7 +353,6 @@ exports.runSolution = async (req, res) => {
 
     let feedback;
     if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
-
     if(turn.version != 2 && performance.attempts % 3 == 0) {
       const easierDifficulty = {
         "hard": "medium",
@@ -396,8 +395,26 @@ exports.runSolution = async (req, res) => {
         Output ONLY the EXACT raw JSON object of the selected problem containing the "_id" field only, with no extra text, formatting, or commentary.
       `;
 
-      const suggestedProblem = await llmService.getLLMResponse(suggestProblemPrompt);
-      res.json({ passed: false, outputs, error, suggestedProblem, feedback })
+      const result = await llmService.getLLMResponse(suggestProblemPrompt);
+      console.log(result);
+
+      let finalProblem;
+      try {
+        const problemId = JSON.parse(result)._id;
+        finalProblem = candidateProblems.find(p => p._id.toString() === problemId);
+      } catch (e) {
+        return res.status(500).json({ error: "LLM did not return valid JSON." });
+      }
+
+      if (!(await Performance.findOne({ userId, problemId: finalProblem._id }))) {
+        await Performance.create({
+          userId,
+          problemId: finalProblem._id,
+          topic: finalProblem.topic,
+          difficulty: finalProblem.difficulty
+        });
+      }
+      res.json({ passed: false, outputs, error, suggestedProblem: finalProblem, feedback })
       return;
     }
 
@@ -580,8 +597,8 @@ exports.runSolution = async (req, res) => {
   `;
 
     let feedback;
-    // if(turn.version != 2) feedback = await llmService.getLLMResponse(feedbackPrompt);
-    if(turn.version != 2) {
+    if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
+    if(turn.version != 2 && performance.attempts % 3 == 0) {
       const easierDifficulty = {
         "hard": "medium",
         "medium": "easy",
@@ -855,7 +872,6 @@ exports.runSolution = async (req, res) => {
 
   let feedback;
   if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
-
   if(turn.version != 2 && performance.attempts % 3 == 0) {
     const easierDifficulty = {
       "hard": "medium",
@@ -898,8 +914,26 @@ exports.runSolution = async (req, res) => {
       Output ONLY the EXACT raw JSON object of the selected problem containing the "_id" field only, with no extra text, formatting, or commentary.
     `;
 
-    const suggestedProblem = await llmService.getLLMResponse(suggestProblemPrompt);
-    res.json({ passed: false, outputs, error, suggestedProblem, feedback })
+    const result = await llmService.getLLMResponse(suggestProblemPrompt);
+    console.log(result);
+
+    let finalProblem;
+    try {
+      const problemId = JSON.parse(result)._id;
+      finalProblem = candidateProblems.find(p => p._id.toString() === problemId);
+    } catch (e) {
+      return res.status(500).json({ error: "LLM did not return valid JSON." });
+    }
+
+    if (!(await Performance.findOne({ userId, problemId: finalProblem._id }))) {
+      await Performance.create({
+        userId,
+        problemId: finalProblem._id,
+        topic: finalProblem.topic,
+        difficulty: finalProblem.difficulty
+      });
+    }
+    res.json({ passed: false, outputs, error, suggestedProblem: finalProblem, feedback })
     return;
   }
   res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
