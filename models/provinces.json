@@ -1,0 +1,644 @@
+[
+  {
+    "id": "RU-CHE",
+    "type": "city",
+    "name": "Capital of Data-Types"
+  },
+  {
+    "id": "path49",
+    "type": "province"
+  },
+  {
+    "id": "path48",
+    "type": "province"
+  },
+  {
+    "id": "path36",
+    "type": "province"
+  },
+  {
+    "id": "path33",
+    "type": "province"
+  },
+  {
+    "id": "path32",
+    "type": "barracks"
+  },
+  {
+    "id": "path31",
+    "type": "province"
+  },
+  {
+    "id": "path29",
+    "type": "province"
+  },
+  {
+    "id": "path4",
+    "type": "province"
+  },
+  {
+    "id": "path37",
+    "type": "province"
+  },
+  {
+    "id": "path38",
+    "type": "province"
+  },
+  {
+    "id": "path41",
+    "type": "province"
+  },
+  {
+    "id": "path44",
+    "type": "province"
+  },
+  {
+    "id": "path46",
+    "type": "province"
+  },
+  {
+    "id": "path10",
+    "type": "city",
+    "name": "Variable City"
+  },
+  {
+    "id": "RU-BA",
+    "type": "province"
+  },
+  {
+    "id": "path92",
+    "type": "province"
+  },
+  {
+    "id": "path91",
+    "type": "province"
+  },
+  {
+    "id": "path90",
+    "type": "city",
+    "name": "Conditional Castle"
+  },
+  {
+    "id": "path76",
+    "type": "province"
+  },
+  {
+    "id": "path82",
+    "type": "province"
+  },
+  {
+    "id": "path50",
+    "type": "province"
+  },
+  {
+    "id": "path14",
+    "type": "province"
+  },
+  {
+    "id": "path52",
+    "type": "province"
+  },
+  {
+    "id": "path51",
+    "type": "province"
+  },
+  {
+    "id": "path24",
+    "type": "province"
+  },
+  {
+    "id": "path53",
+    "type": "province"
+  },
+  {
+    "id": "path56",
+    "type": "province"
+  },
+  {
+    "id": "path93",
+    "type": "province"
+  },
+  {
+    "id": "RU-ORE",
+    "type": "city",
+    "name": "Loops Land"
+  },
+  {
+    "id": "path55",
+    "type": "province"
+  },
+  {
+    "id": "path57",
+    "type": "barracks"
+  },
+  {
+    "id": "path19",
+    "type": "province"
+  },
+  {
+    "id": "path54",
+    "type": "province"
+  },
+  {
+    "id": "path74",
+    "type": "province"
+  },
+  {
+    "id": "path58",
+    "type": "city",
+    "name": "Array Fortress"
+  },
+  {
+    "id": "path23",
+    "type": "factory"
+  },
+  {
+    "id": "path83",
+    "type": "province"
+  },
+  {
+    "id": "path75",
+    "type": "province"
+  },
+  {
+    "id": "path17",
+    "type": "province"
+  },
+  {
+    "id": "path80",
+    "type": "province"
+  },
+  {
+    "id": "path81",
+    "type": "province"
+  },
+  {
+    "id": "path26",
+    "type": "province"
+  },
+  {
+    "id": "path20",
+    "type": "province"
+  },
+  {
+    "id": "path78",
+    "type": "city",
+    "name": "Float Fortress"
+  },
+  {
+    "id": "path84",
+    "type": "province"
+  },
+  {
+    "id": "path87",
+    "type": "province"
+  },
+  {
+    "id": "path86",
+    "type": "province"
+  },
+  {
+    "id": "path173",
+    "type": "province"
+  },
+  {
+    "id": "path247",
+    "type": "province"
+  },
+  {
+    "id": "path246",
+    "type": "province"
+  },
+  {
+    "id": "path245",
+    "type": "barracks"
+  },
+  {
+    "id": "path178",
+    "type": "province"
+  },
+  {
+    "id": "path182",
+    "type": "province"
+  },
+  {
+    "id": "path183",
+    "type": "province"
+  },
+  {
+    "id": "path184",
+    "type": "barracks"
+  },
+  {
+    "id": "path203",
+    "type": "province"
+  },
+  {
+    "id": "path206",
+    "type": "province"
+  },
+  {
+    "id": "path207",
+    "type": "province"
+  },
+  {
+    "id": "path208",
+    "type": "province"
+  },
+  {
+    "id": "path209",
+    "type": "province"
+  },
+  {
+    "id": "path214",
+    "type": "province"
+  },
+  {
+    "id": "path215",
+    "type": "city",
+    "name": "Method Fortress"
+  },
+  {
+    "id": "path227",
+    "type": "province"
+  },
+  {
+    "id": "path226",
+    "type": "province"
+  },
+  {
+    "id": "path223",
+    "type": "barracks"
+  },
+  {
+    "id": "path222",
+    "type": "province"
+  },
+  {
+    "id": "path221",
+    "type": "province"
+  },
+  {
+    "id": "path220",
+    "type": "province"
+  },
+  {
+    "id": "path211",
+    "type": "city",
+    "name": "Object Land"
+  },
+  {
+    "id": "path210",
+    "type": "city",
+    "name": "Class Castle"
+  },
+  {
+    "id": "path202",
+    "type": "province"
+  },
+  {
+    "id": "path201",
+    "type": "city",
+    "name": "Function City"
+  },
+  {
+    "id": "path176",
+    "type": "province"
+  },
+  {
+    "id": "path177",
+    "type": "city",
+    "name": "Encapsulation Enclave"
+  },
+  {
+    "id": "path236",
+    "type": "factory"
+  },
+  {
+    "id": "path235",
+    "type": "city",
+    "name": "Balabeezo Area"
+  },
+  {
+    "id": "path238",
+    "type": "barracks"
+  },
+  {
+    "id": "path241",
+    "type": "province"
+  },
+  {
+    "id": "path240",
+    "type": "city",
+    "name": "Polymorphism Palace"
+  },
+  {
+    "id": "path28",
+    "type": "province"
+  },
+  {
+    "id": "path61",
+    "type": "province"
+  },
+  {
+    "id": "path89",
+    "type": "province"
+  },
+  {
+    "id": "path62",
+    "type": "barracks"
+  },
+  {
+    "id": "path60",
+    "type": "city",
+    "name": "Boolean Bastion"
+  },
+  {
+    "id": "path67",
+    "type": "city",
+    "name": "String Stronghold"
+  },
+  {
+    "id": "path66",
+    "type": "province"
+  },
+  {
+    "id": "path68",
+    "type": "province"
+  },
+  {
+    "id": "path88",
+    "type": "province"
+  },
+  {
+    "id": "path64",
+    "type": "city",
+    "name": "Integer Inn"
+  },
+  {
+    "id": "path231",
+    "type": "city",
+    "name": "Compilation District"
+  },
+  {
+    "id": "path232",
+    "type": "province"
+  },
+  {
+    "id": "path102",
+    "type": "barracks"
+  },
+  {
+    "id": "path73",
+    "type": "province"
+  },
+  {
+    "id": "path103",
+    "type": "province"
+  },
+  {
+    "id": "path70",
+    "type": "factory"
+  },
+  {
+    "id": "path69",
+    "type": "province"
+  },
+  {
+    "id": "path101",
+    "type": "province"
+  },
+  {
+    "id": "path1",
+    "type": "city",
+    "name": "Memory Meadow"
+  },
+  {
+    "id": "path9",
+    "type": "city",
+    "name": "Pointer Plaza"
+  },
+  {
+    "id": "path11",
+    "type": "city",
+    "name": "Exception Estate"
+  },
+  {
+    "id": "path169",
+    "type": "barracks"
+  },
+  {
+    "id": "path168",
+    "type": "province"
+  },
+  {
+    "id": "path2",
+    "type": "province"
+  },
+  {
+    "id": "path233",
+    "type": "barracks"
+  },
+  {
+    "id": "path98",
+    "type": "province"
+  },
+  {
+    "id": "path95",
+    "type": "province"
+  },
+  {
+    "id": "path100",
+    "type": "province"
+  },
+  {
+    "id": "path99",
+    "type": "province"
+  },
+  {
+    "id": "path228",
+    "type": "province"
+  },
+  {
+    "id": "path107",
+    "type": "factory"
+  },
+  {
+    "id": "path108",
+    "type": "province"
+  },
+  {
+    "id": "path106",
+    "type": "city",
+    "name": "Char Castle"
+  },
+  {
+    "id": "path109",
+    "type": "province"
+  },
+  {
+    "id": "path113",
+    "type": "city",
+    "name": "Pointer Palace"
+  },
+  {
+    "id": "path112",
+    "type": "province"
+  },
+  {
+    "id": "path116",
+    "type": "factory"
+  },
+  {
+    "id": "path115",
+    "type": "city",
+    "name": "Data Port"
+  },
+  {
+    "id": "path119",
+    "type": "province"
+  },
+  {
+    "id": "path120",
+    "type": "province"
+  },
+  {
+    "id": "path118",
+    "type": "province"
+  },
+  {
+    "id": "path117",
+    "type": "city",
+    "name": "Inheritance Citadel"
+  },
+  {
+    "id": "path172",
+    "type": "barracks"
+  },
+  {
+    "id": "path171",
+    "type": "province"
+  },
+  {
+    "id": "path170",
+    "type": "province"
+  },
+  {
+    "id": "path248",
+    "type": "province"
+  },
+  {
+    "id": "path249",
+    "type": "barracks"
+  },
+  {
+    "id": "path251",
+    "type": "city",
+    "name": "Capital of Algorithms"
+  },
+  {
+    "id": "path5",
+    "type": "province"
+  },
+  {
+    "id": "path6",
+    "type": "province"
+  },
+  {
+    "id": "path7",
+    "type": "province"
+  },
+  {
+    "id": "RU-CU",
+    "type": "city",
+    "name": "Assembly Alley"
+  },
+  {
+    "id": "RU-IVA",
+    "type": "city",
+    "name": "Recursion Realm"
+  },
+  {
+    "id": "RU-RYA",
+    "type": "city",
+    "name": "Syntax Shire"
+  },
+  {
+    "id": "RU-TAM",
+    "type": "city",
+    "name": "Debug Domain"
+  },
+  {
+    "id": "RU-TA",
+    "type": "barracks"
+  },
+  {
+    "id": "RU-VLA",
+    "type": "city",
+    "name": "Binary Borough"
+  },
+  {
+    "id": "path79",
+    "type": "province"
+  },
+  {
+    "id": "path97",
+    "type": "province"
+  },
+  {
+    "id": "RU-UD",
+    "type": "province"
+  },
+  {
+    "id": "path111",
+    "type": "province"
+  },
+  {
+    "id": "path110",
+    "type": "province"
+  },
+  {
+    "id": "RU-KIR",
+    "type": "province"
+  },
+  {
+    "id": "RU-ME",
+    "type": "province"
+  },
+  {
+    "id": "RU-KOS",
+    "type": "province"
+  },
+  {
+    "id": "RU-MO",
+    "type": "province"
+  },
+  {
+    "id": "RU-PNZ",
+    "type": "province"
+  },
+  {
+    "id": "RU-SAM",
+    "type": "province"
+  },
+  {
+    "id": "RU-SAR",
+    "type": "province"
+  },
+  {
+    "id": "RU-ULY",
+    "type": "province"
+  },
+  {
+    "id": "RU-VLG",
+    "type": "province"
+  },
+  {
+    "id": "path234",
+    "type": "province"
+  },
+  {
+    "id": "path8",
+    "type": "province"
+  }
+]

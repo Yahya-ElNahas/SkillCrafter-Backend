@@ -1,0 +1,85 @@
+[
+  {
+    "id": "hard_data_types",
+    "title": "Data Types Master",
+    "description": "Successfully solved a hard data types problem",
+    "emoji": "🔢",
+    "category": "problem_solving",
+    "difficulty": "hard",
+    "topic": "data types",
+    "trigger": "solve_hard_problem"
+  },
+  {
+    "id": "hard_strings",
+    "title": "String Wizard",
+    "description": "Successfully solved a hard strings problem",
+    "emoji": "🧵",
+    "category": "problem_solving",
+    "difficulty": "hard",
+    "topic": "strings",
+    "trigger": "solve_hard_problem"
+  },
+  {
+    "id": "hard_conditions",
+    "title": "Logic Commander",
+    "description": "Successfully solved a hard conditions problem",
+    "emoji": "🧠",
+    "category": "problem_solving",
+    "difficulty": "hard",
+    "topic": "conditions",
+    "trigger": "solve_hard_problem"
+  },
+  {
+    "id": "hard_loops",
+    "title": "Loop Legend",
+    "description": "Successfully solved a hard loops problem",
+    "emoji": "🔄",
+    "category": "problem_solving",
+    "difficulty": "hard",
+    "topic": "loops",
+    "trigger": "solve_hard_problem"
+  },
+  {
+    "id": "hard_methods",
+    "title": "Method Master",
+    "description": "Successfully solved a hard methods problem",
+    "emoji": "⚡",
+    "category": "problem_solving",
+    "difficulty": "hard",
+    "topic": "methods",
+    "trigger": "solve_hard_problem"
+  },
+  {
+    "id": "first_turn_complete",
+    "title": "First Victory",
+    "description": "Completed your first turn in the game",
+    "emoji": "🎯",
+    "category": "game_progression",
+    "trigger": "complete_turn",
+    "turnCount": 1
+  },
+  {
+    "id": "quick_solver",
+    "title": "Speed Demon",
+    "description": "Solved a problem in just 1 attempt",
+    "emoji": "⚡",
+    "category": "performance",
+    "trigger": "solve_in_one_attempt"
+  },
+  {
+    "id": "persistent_solver",
+    "title": "Never Give Up",
+    "description": "Solved a problem after multiple attempts",
+    "emoji": "💪",
+    "category": "performance",
+    "trigger": "solve_after_multiple_attempts"
+  },
+  {
+    "id": "hint_master",
+    "title": "Self-Reliant",
+    "description": "Solved a problem without using any hints",
+    "emoji": "🎓",
+    "category": "performance",
+    "trigger": "solve_without_hints"
+  }
+]

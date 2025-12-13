@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "backend/data/qTable.json",
+    "backend/models/armies.json",
+    "backend/models/provinces.json",
+    "backend/utils/problems.json",
+    "backend/utils/storeProblem.js"
+  ]
+}

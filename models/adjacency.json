@@ -1,0 +1,1159 @@
+{
+  "RU-BA": [
+    "path92",
+    "path90",
+    "path29",
+    "path31",
+    "path36",
+    "path91"
+  ],
+  "path92": [
+    "RU-BA",
+    "path90",
+    "path31",
+    "path91"
+  ],
+  "path90": [
+    "RU-BA",
+    "path92",
+    "path76",
+    "path91",
+    "path75"
+  ],
+  "path14": [
+    "path52",
+    "path51",
+    "path50",
+    "path82",
+    "path4",
+    "path29",
+    "path37",
+    "path48"
+  ],
+  "path52": [
+    "path14",
+    "path29",
+    "path48",
+    "path49",
+    "path36"
+  ],
+  "path17": [
+    "path80",
+    "path81",
+    "path20",
+    "path68",
+    "path88",
+    "path64",
+    "path58"
+  ],
+  "path80": [
+    "path17",
+    "path81",
+    "path88",
+    "path64",
+    "RU-TA",
+    "path79"
+  ],
+  "path81": [
+    "path17",
+    "path80",
+    "path26",
+    "path20",
+    "path23",
+    "path58",
+    "path79"
+  ],
+  "path26": [
+    "path81",
+    "path23",
+    "path83",
+    "path78",
+    "path84",
+    "path58",
+    "path79"
+  ],
+  "path54": [
+    "path53",
+    "path74",
+    "path24",
+    "path62",
+    "path19"
+  ],
+  "path53": [
+    "path54",
+    "path74",
+    "path24",
+    "path46",
+    "path37",
+    "path56",
+    "path19"
+  ],
+  "path20": [
+    "path17",
+    "path81",
+    "path74",
+    "path62",
+    "path68",
+    "path58"
+  ],
+  "path74": [
+    "path54",
+    "path53",
+    "path20",
+    "path24",
+    "path50",
+    "path62",
+    "path58"
+  ],
+  "path24": [
+    "path54",
+    "path53",
+    "path74",
+    "path51",
+    "path50",
+    "path46",
+    "path37",
+    "path58"
+  ],
+  "path51": [
+    "path14",
+    "path24",
+    "path50",
+    "path37"
+  ],
+  "path50": [
+    "path14",
+    "path74",
+    "path24",
+    "path51",
+    "path23",
+    "path82",
+    "path4",
+    "path58"
+  ],
+  "path23": [
+    "path81",
+    "path26",
+    "path50",
+    "path82",
+    "path76",
+    "path83",
+    "path58"
+  ],
+  "path82": [
+    "path14",
+    "path50",
+    "path23",
+    "path76",
+    "path83",
+    "path4",
+    "path58"
+  ],
+  "path76": [
+    "path90",
+    "path23",
+    "path82",
+    "path83",
+    "path4",
+    "path91",
+    "path75"
+  ],
+  "path83": [
+    "path26",
+    "path23",
+    "path82",
+    "path76",
+    "path84",
+    "path87",
+    "path75"
+  ],
+  "path75": [
+    "path90",
+    "path91",
+    "path76",
+    "path83",
+    "path84",
+    "path87"
+  ],
+  "path78": [
+    "path26",
+    "path84",
+    "path86",
+    "path98",
+    "path79",
+    "RU-UD"
+  ],
+  "path84": [
+    "path26",
+    "path83",
+    "path78",
+    "path87",
+    "path86",
+    "path75"
+  ],
+  "path87": [
+    "path83",
+    "path84",
+    "path86",
+    "path75"
+  ],
+  "path86": [
+    "path78",
+    "path84",
+    "path87",
+    "RU-UD"
+  ],
+  "RU-CHE": [
+    "path49",
+    "path48"
+  ],
+  "path4": [
+    "path14",
+    "path50",
+    "path82",
+    "path76",
+    "path29",
+    "path91"
+  ],
+  "path29": [
+    "RU-BA",
+    "path14",
+    "path52",
+    "path4",
+    "path36",
+    "path91"
+  ],
+  "path10": [
+    "path44",
+    "path56"
+  ],
+  "path46": [
+    "path53",
+    "path24",
+    "path44",
+    "path37",
+    "path56"
+  ],
+  "path44": [
+    "path10",
+    "path46",
+    "path41",
+    "path38",
+    "path37",
+    "path56"
+  ],
+  "path41": [
+    "path44",
+    "path38",
+    "path37"
+  ],
+  "path38": [
+    "path44",
+    "path41",
+    "path37",
+    "path48"
+  ],
+  "path37": [
+    "path14",
+    "path53",
+    "path24",
+    "path51",
+    "path46",
+    "path44",
+    "path41",
+    "path38",
+    "path48"
+  ],
+  "path48": [
+    "path14",
+    "path52",
+    "path38",
+    "path37",
+    "path49",
+    "RU-CHE"
+  ],
+  "path49": [
+    "path52",
+    "RU-CHE",
+    "path48",
+    "path33",
+    "path36"
+  ],
+  "path31": [
+    "RU-BA",
+    "path92",
+    "path36",
+    "path32"
+  ],
+  "path33": [
+    "path49",
+    "path36",
+    "path32"
+  ],
+  "path36": [
+    "RU-BA",
+    "path52",
+    "path29",
+    "path49",
+    "path31",
+    "path33",
+    "path32"
+  ],
+  "path173": [
+    "path176",
+    "path177",
+    "path235",
+    "path238",
+    "path228",
+    "path108",
+    "path106",
+    "RU-CU"
+  ],
+  "path247": [
+    "path246",
+    "path245",
+    "path241",
+    "path240",
+    "RU-KOS"
+  ],
+  "path246": [
+    "path247",
+    "path245",
+    "path249",
+    "RU-KOS",
+    "RU-VLG"
+  ],
+  "path245": [
+    "path247",
+    "path246",
+    "path183",
+    "path184",
+    "path208",
+    "path202",
+    "path240",
+    "path249",
+    "RU-VLG"
+  ],
+  "path178": [
+    "path182",
+    "path203",
+    "path176",
+    "path177",
+    "path241",
+    "path240"
+  ],
+  "path182": [
+    "path178",
+    "path203",
+    "path206",
+    "path214",
+    "path177"
+  ],
+  "path183": [
+    "path245",
+    "path184",
+    "path203",
+    "path208",
+    "path240"
+  ],
+  "path184": [
+    "path245",
+    "path183",
+    "path208",
+    "path215",
+    "path221",
+    "path202",
+    "RU-VLG"
+  ],
+  "path203": [
+    "path178",
+    "path182",
+    "path183",
+    "path208",
+    "path214",
+    "path215",
+    "path240"
+  ],
+  "path206": [
+    "path182",
+    "path207",
+    "path214",
+    "path177",
+    "RU-KIR",
+    "RU-ME"
+  ],
+  "path207": [
+    "path206",
+    "path209",
+    "path214",
+    "path119",
+    "path120",
+    "RU-KIR"
+  ],
+  "path208": [
+    "path245",
+    "path183",
+    "path184",
+    "path203",
+    "path214",
+    "path215",
+    "path221"
+  ],
+  "path209": [
+    "path207",
+    "path214",
+    "path215",
+    "path227",
+    "path119",
+    "path120",
+    "path117"
+  ],
+  "path214": [
+    "path182",
+    "path203",
+    "path206",
+    "path207",
+    "path208",
+    "path209",
+    "path215",
+    "path227"
+  ],
+  "path215": [
+    "path184",
+    "path203",
+    "path208",
+    "path209",
+    "path214",
+    "path227",
+    "path222",
+    "path221"
+  ],
+  "path227": [
+    "path209",
+    "path214",
+    "path215",
+    "path226",
+    "path222",
+    "path221",
+    "path117"
+  ],
+  "path226": [
+    "path227",
+    "path223",
+    "path222",
+    "path220",
+    "path117"
+  ],
+  "path223": [
+    "path226",
+    "path220",
+    "path210",
+    "path117"
+  ],
+  "path222": [
+    "path215",
+    "path227",
+    "path226",
+    "path221",
+    "path220",
+    "path211"
+  ],
+  "path221": [
+    "path184",
+    "path208",
+    "path215",
+    "path227",
+    "path222",
+    "path211"
+  ],
+  "path220": [
+    "path226",
+    "path223",
+    "path222",
+    "path211",
+    "path210"
+  ],
+  "path211": [
+    "path222",
+    "path221",
+    "path220",
+    "path210"
+  ],
+  "path210": [
+    "path223",
+    "path220",
+    "path211"
+  ],
+  "path202": [
+    "path245",
+    "path184",
+    "path201",
+    "path248",
+    "RU-VLG"
+  ],
+  "path201": [
+    "path202",
+    "path248"
+  ],
+  "path176": [
+    "path173",
+    "path178",
+    "path177",
+    "path238",
+    "path241",
+    "path240"
+  ],
+  "path177": [
+    "path173",
+    "path178",
+    "path182",
+    "path206",
+    "path176",
+    "path108",
+    "path106",
+    "path109",
+    "RU-ME"
+  ],
+  "path236": [
+    "path235",
+    "path238",
+    "RU-MO"
+  ],
+  "path235": [
+    "path173",
+    "path236",
+    "path238",
+    "RU-CU",
+    "RU-MO",
+    "path234"
+  ],
+  "path238": [
+    "path173",
+    "path176",
+    "path236",
+    "path235",
+    "path241"
+  ],
+  "path241": [
+    "path247",
+    "path178",
+    "path176",
+    "path238",
+    "path240"
+  ],
+  "path240": [
+    "path247",
+    "path245",
+    "path178",
+    "path183",
+    "path203",
+    "path176",
+    "path241"
+  ],
+  "RU-ORE": [
+    "path55",
+    "path93"
+  ],
+  "path55": [
+    "RU-ORE",
+    "path93",
+    "path57"
+  ],
+  "path93": [
+    "RU-ORE",
+    "path55",
+    "path57",
+    "path56"
+  ],
+  "path57": [
+    "path55",
+    "path93",
+    "path56",
+    "path28",
+    "path19"
+  ],
+  "path56": [
+    "path53",
+    "path10",
+    "path46",
+    "path44",
+    "path93",
+    "path57",
+    "path19"
+  ],
+  "path28": [
+    "path57",
+    "path61",
+    "path62",
+    "path19"
+  ],
+  "path61": [
+    "path28",
+    "path89",
+    "path62"
+  ],
+  "path89": [
+    "path61",
+    "path62",
+    "path67"
+  ],
+  "path62": [
+    "path54",
+    "path20",
+    "path74",
+    "path28",
+    "path61",
+    "path89",
+    "path67",
+    "path68",
+    "path19"
+  ],
+  "path60": [
+    "path67",
+    "path66",
+    "path73",
+    "RU-SAM",
+    "RU-SAR"
+  ],
+  "path67": [
+    "path89",
+    "path62",
+    "path60",
+    "path66",
+    "path68",
+    "path88"
+  ],
+  "path66": [
+    "path60",
+    "path67",
+    "path88",
+    "path64",
+    "path101",
+    "RU-SAM"
+  ],
+  "path68": [
+    "path17",
+    "path20",
+    "path62",
+    "path67",
+    "path88"
+  ],
+  "path88": [
+    "path17",
+    "path80",
+    "path67",
+    "path66",
+    "path68",
+    "path64"
+  ],
+  "path64": [
+    "path17",
+    "path80",
+    "path66",
+    "path88",
+    "path101",
+    "RU-TA"
+  ],
+  "path231": [
+    "path232",
+    "path11",
+    "path169",
+    "path168",
+    "path172",
+    "RU-MO",
+    "RU-PNZ",
+    "path234"
+  ],
+  "path232": [
+    "path231",
+    "path11",
+    "path169",
+    "path233",
+    "RU-TAM",
+    "RU-MO",
+    "path234"
+  ],
+  "path102": [
+    "path73",
+    "path103",
+    "path70",
+    "path69",
+    "path101",
+    "RU-SAM"
+  ],
+  "path73": [
+    "path60",
+    "path102",
+    "path103",
+    "RU-SAM",
+    "RU-SAR"
+  ],
+  "path103": [
+    "path102",
+    "path73",
+    "path70",
+    "path2",
+    "RU-SAM",
+    "RU-SAR"
+  ],
+  "path70": [
+    "path102",
+    "path103",
+    "path69",
+    "path2",
+    "path172",
+    "path171",
+    "path170",
+    "RU-ULY"
+  ],
+  "path69": [
+    "path102",
+    "path70",
+    "path101",
+    "path99",
+    "path113",
+    "path170",
+    "RU-TA",
+    "RU-SAM"
+  ],
+  "path101": [
+    "path66",
+    "path64",
+    "path102",
+    "path69",
+    "path99",
+    "RU-TA",
+    "RU-SAM"
+  ],
+  "path1": [
+    "path9",
+    "path168",
+    "path2",
+    "RU-SAR",
+    "path8"
+  ],
+  "path9": [
+    "path1",
+    "path11",
+    "path169",
+    "path168",
+    "path8"
+  ],
+  "path11": [
+    "path231",
+    "path232",
+    "path9",
+    "path169",
+    "path233",
+    "RU-TAM"
+  ],
+  "path169": [
+    "path231",
+    "path232",
+    "path9",
+    "path11",
+    "path168",
+    "RU-PNZ"
+  ],
+  "path168": [
+    "path231",
+    "path1",
+    "path9",
+    "path169",
+    "path2",
+    "RU-PNZ",
+    "RU-ULY"
+  ],
+  "path2": [
+    "path103",
+    "path70",
+    "path1",
+    "path168",
+    "RU-PNZ",
+    "RU-SAR",
+    "RU-ULY"
+  ],
+  "path233": [
+    "path232",
+    "path11",
+    "RU-TAM"
+  ],
+  "path98": [
+    "path78",
+    "path95",
+    "path100",
+    "RU-TA",
+    "path79",
+    "path97",
+    "RU-UD"
+  ],
+  "path95": [
+    "path98",
+    "path100",
+    "path99",
+    "path112",
+    "RU-TA",
+    "path79",
+    "path97"
+  ],
+  "path100": [
+    "path98",
+    "path95",
+    "path99",
+    "path112",
+    "path116",
+    "path97",
+    "path111"
+  ],
+  "path99": [
+    "path69",
+    "path101",
+    "path95",
+    "path100",
+    "path113",
+    "path112",
+    "RU-TA"
+  ],
+  "path228": [
+    "path173",
+    "path107",
+    "path108",
+    "path171",
+    "path170",
+    "RU-CU"
+  ],
+  "path107": [
+    "path228",
+    "path108",
+    "path106",
+    "path113",
+    "path112",
+    "path170"
+  ],
+  "path108": [
+    "path173",
+    "path177",
+    "path228",
+    "path107",
+    "path106",
+    "path112"
+  ],
+  "path106": [
+    "path173",
+    "path177",
+    "path107",
+    "path108",
+    "path109",
+    "path112",
+    "path111"
+  ],
+  "path109": [
+    "path177",
+    "path106",
+    "path111",
+    "RU-ME"
+  ],
+  "path113": [
+    "path69",
+    "path99",
+    "path107",
+    "path112",
+    "path170",
+    "path110"
+  ],
+  "path112": [
+    "path95",
+    "path100",
+    "path99",
+    "path107",
+    "path108",
+    "path106",
+    "path113",
+    "path116",
+    "path111",
+    "path110",
+    "RU-KIR"
+  ],
+  "path116": [
+    "path100",
+    "path112",
+    "path115",
+    "path119",
+    "path97",
+    "RU-UD",
+    "path111",
+    "RU-KIR"
+  ],
+  "path115": [
+    "path116",
+    "path119",
+    "path120",
+    "path118",
+    "path97",
+    "RU-UD"
+  ],
+  "path119": [
+    "path207",
+    "path209",
+    "path116",
+    "path115",
+    "path120",
+    "RU-KIR"
+  ],
+  "path120": [
+    "path207",
+    "path209",
+    "path115",
+    "path119",
+    "path118",
+    "path117"
+  ],
+  "path118": [
+    "path115",
+    "path120",
+    "path117"
+  ],
+  "path117": [
+    "path209",
+    "path227",
+    "path226",
+    "path223",
+    "path120",
+    "path118"
+  ],
+  "path172": [
+    "path231",
+    "path70",
+    "path171",
+    "RU-PNZ",
+    "RU-ULY",
+    "path234"
+  ],
+  "path171": [
+    "path70",
+    "path228",
+    "path172",
+    "path170",
+    "RU-CU",
+    "path234"
+  ],
+  "path170": [
+    "path70",
+    "path69",
+    "path228",
+    "path107",
+    "path113",
+    "path171"
+  ],
+  "path248": [
+    "path202",
+    "path201",
+    "path251",
+    "RU-VLG"
+  ],
+  "path249": [
+    "path246",
+    "path245",
+    "path251",
+    "RU-VLG"
+  ],
+  "path251": [
+    "path248",
+    "path249",
+    "RU-VLG"
+  ],
+  "path32": [
+    "path31",
+    "path33",
+    "path36"
+  ],
+  "path91": [
+    "RU-BA",
+    "path92",
+    "path90",
+    "path76",
+    "path4",
+    "path29",
+    "path75"
+  ],
+  "path19": [
+    "path54",
+    "path53",
+    "path57",
+    "path56",
+    "path28",
+    "path62"
+  ],
+  "path58": [
+    "path17",
+    "path81",
+    "path26",
+    "path20",
+    "path74",
+    "path24",
+    "path50",
+    "path23",
+    "path82"
+  ],
+  "path5": [],
+  "path6": [],
+  "path7": [],
+  "RU-CU": [
+    "path173",
+    "path234",
+    "path235",
+    "path228",
+    "path171",
+    "path234"
+  ],
+  "RU-IVA": [
+    "RU-KOS",
+    "RU-KOS"
+  ],
+  "RU-RYA": [],
+  "RU-TAM": [
+    "path232",
+    "path11",
+    "path233"
+  ],
+  "RU-TA": [
+    "path80",
+    "path79",
+    "path64",
+    "path69",
+    "path101",
+    "path98",
+    "path95",
+    "path99",
+    "path79"
+  ],
+  "RU-VLA": [],
+  "path79": [
+    "path80",
+    "path81",
+    "path26",
+    "path78",
+    "RU-TA",
+    "path98",
+    "path95"
+  ],
+  "path97": [
+    "path98",
+    "path95",
+    "path100",
+    "RU-UD",
+    "path116",
+    "path115",
+    "RU-UD"
+  ],
+  "RU-UD": [
+    "path78",
+    "path86",
+    "path98",
+    "path97",
+    "path116",
+    "path115"
+  ],
+  "path111": [
+    "RU-KIR",
+    "RU-ME",
+    "path100",
+    "path106",
+    "path109",
+    "path112",
+    "path116",
+    "RU-KIR",
+    "RU-ME"
+  ],
+  "path110": [
+    "path113",
+    "path112"
+  ],
+  "RU-KIR": [
+    "path206",
+    "path207",
+    "RU-ME",
+    "path112",
+    "path111",
+    "path116",
+    "path119",
+    "RU-ME"
+  ],
+  "RU-ME": [
+    "RU-KIR",
+    "path206",
+    "path177",
+    "path109",
+    "path111"
+  ],
+  "RU-KOS": [
+    "RU-IVA",
+    "path247",
+    "path246"
+  ],
+  "RU-MO": [
+    "path234",
+    "path236",
+    "path235",
+    "path231",
+    "path232",
+    "path234"
+  ],
+  "RU-PNZ": [
+    "path234",
+    "path231",
+    "path169",
+    "path168",
+    "path2",
+    "RU-ULY",
+    "path172",
+    "RU-ULY",
+    "path234"
+  ],
+  "RU-SAM": [
+    "path60",
+    "path66",
+    "path102",
+    "path73",
+    "path103",
+    "path69",
+    "path101"
+  ],
+  "RU-SAR": [
+    "path60",
+    "path73",
+    "path103",
+    "path1",
+    "path2"
+  ],
+  "RU-ULY": [
+    "RU-PNZ",
+    "path70",
+    "path168",
+    "path2",
+    "path172"
+  ],
+  "RU-VLG": [
+    "path246",
+    "path245",
+    "path184",
+    "path202",
+    "path248",
+    "path249",
+    "path251"
+  ],
+  "path234": [
+    "RU-CU",
+    "RU-MO",
+    "path235",
+    "RU-PNZ",
+    "path231",
+    "path232",
+    "path172",
+    "path171"
+  ],
+  "path8": [
+    "path1",
+    "path9"
+  ]
+}
