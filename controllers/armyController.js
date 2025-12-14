@@ -58,7 +58,7 @@ exports.moveDivision = async (req, res) => {
 
     if (division.faction !== "allied") return res.status(400).json({ error: "Can only move allied divisions." });
 
-    // if ((division.movement || 0) <= 0) return res.status(400).json({ error: "Division has no movement points left." });
+    if ((division.movement || 0) <= 0) return res.status(400).json({ error: "Division has no movement points left." });
 
     const adjacency = getAdjacency(division.position);
     if (!adjacency.includes(position)) return res.status(400).json({ error: "Invalid move. Position not adjacent." });
