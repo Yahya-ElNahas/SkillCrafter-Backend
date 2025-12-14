@@ -241,12 +241,22 @@ exports.runSolution = async (req, res) => {
   if (!turn) return res.status(404).json({ error: "Turn not found for user" });
 
   if (turn.version == 3) {
-    const performance = await Performance.findOne({ userId, problemId: problem._id });
+    let performance = await Performance.findOne({ userId, problemId: problem._id });
+    
+    // If performance doesn't exist, create it (shouldn't happen but safety check)
+    if (!performance) {
+      performance = await Performance.create({
+        userId,
+        problemId: problem._id,
+        topic: problem.topic,
+        difficulty: problem.difficulty
+      });
+    }
   
     let { allPassed, outputs, error } = await runTestCases(code, problem, language);
 
     const now = new Date();
-    const timeSpent = Math.floor((now - performance.date) / 1000);
+    const timeSpent = performance.date ? Math.floor((now - performance.date) / 1000) : 0;
     performance.timeSpent = (performance.timeSpent || 0) + timeSpent;
     
     
@@ -371,70 +381,6 @@ exports.runSolution = async (req, res) => {
 
     let feedback;
     if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
-    if(turn.version != 2 && performance.attempts % 3 == 0 && performance.attempts != 0) {
-      const easierDifficulty = {
-        "hard": "medium",
-        "medium": "easy",
-        "easy": "basic",
-        "basic": "basic"
-      }
-      // find an easier problem in same topic that has not been solved yet, if all easier problems are solved, get all problems in the current difficulty that has not been solved yet
-      const easierProblems = await Problem.find({
-        topic: problem.topic, 
-        difficulty: easierDifficulty[problem.difficulty] 
-      }).lean();
-      const solvedIds = new Set((await Performance.find({ userId, topic: problem.topic, passed: true })).map(p => p.problemId.toString()));
-      let candidateProblems = easierProblems.filter(p => !solvedIds.has(p._id.toString()));
-      if(candidateProblems.length == 0) {
-        candidateProblems = (await Problem.find({ 
-          topic: problem.topic, 
-          difficulty: problem.difficulty 
-        }).lean()).filter(p => !solvedIds.has(p._id.toString()));
-      }
-      
-      if(candidateProblems.length == 0) {
-        return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
-      }
-      if(candidateProblems.length == 1) {
-        return res.json({ passed: false, outputs, error, suggestedProblem: candidateProblems[0], feedback,  });
-      }
-
-      const suggestProblemPrompt = `
-        You are an adaptive problem recommender for programming learners.
-        Based on the user's struggle with the following problem:
-        Problem: ${problem.title}
-        Description: ${problem.description}
-        User's Code:
-        ${code}
-
-        Suggest ONE easier problem from the following list that will help them build up to solving the original problem. If none are suitable, respond with null.
-        ${JSON.stringify(candidateProblems, null, 2)}
-
-        Output ONLY the EXACT raw JSON object of the selected problem containing the "_id" field only, with no extra text, formatting, or commentary.
-      `;
-
-      const result = await llmService.getLLMResponse(suggestProblemPrompt);
-      console.log(result);
-
-      let finalProblem;
-      try {
-        const problemId = JSON.parse(result)._id;
-        finalProblem = candidateProblems.find(p => p._id.toString() === problemId);
-      } catch (e) {
-        return res.status(500).json({ error: "LLM did not return valid JSON." });
-      }
-
-      if (!(await Performance.findOne({ userId, problemId: finalProblem._id }))) {
-        await Performance.create({
-          userId,
-          problemId: finalProblem._id,
-          topic: finalProblem.topic,
-          difficulty: finalProblem.difficulty
-        });
-      }
-      res.json({ passed: false, outputs, error, suggestedProblem: finalProblem, feedback })
-      return;
-    }
 
     return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
   }
@@ -616,70 +562,6 @@ exports.runSolution = async (req, res) => {
 
     let feedback;
     if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
-    if(turn.version != 2 && performance.attempts % 3 == 0 && performance.attempts != 0) {
-      const easierDifficulty = {
-        "hard": "medium",
-        "medium": "easy",
-        "easy": "basic",
-        "basic": "basic"
-      }
-      // find an easier problem in same topic that has not been solved yet, if all easier problems are solved, get all problems in the current difficulty that has not been solved yet
-      const easierProblems = await Problem.find({
-        topic: problem.topic, 
-        difficulty: easierDifficulty[problem.difficulty] 
-      }).lean();
-      const solvedIds = new Set((await Performance.find({ userId, topic: problem.topic, passed: true })).map(p => p.problemId.toString()));
-      let candidateProblems = easierProblems.filter(p => !solvedIds.has(p._id.toString()));
-      if(candidateProblems.length == 0) {
-        candidateProblems = (await Problem.find({ 
-          topic: problem.topic, 
-          difficulty: problem.difficulty 
-        }).lean()).filter(p => !solvedIds.has(p._id.toString()));
-      }
-      
-      if(candidateProblems.length == 0) {
-        return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
-      }
-      if(candidateProblems.length == 1) {
-        return res.json({ passed: false, outputs, error, suggestedProblem: candidateProblems[0], feedback,  });
-      }
-
-      const suggestProblemPrompt = `
-        You are an adaptive problem recommender for programming learners.
-        Based on the user's struggle with the following problem:
-        Problem: ${problem.title}
-        Description: ${problem.description}
-        User's Code:
-        ${code}
-
-        Suggest ONE easier problem from the following list that will help them build up to solving the original problem. If none are suitable, respond with null.
-        ${JSON.stringify(candidateProblems, null, 2)}
-
-        Output ONLY the EXACT raw JSON object of the selected problem containing the "_id" field only, with no extra text, formatting, or commentary.
-      `;
-
-      const result = await llmService.getLLMResponse(suggestProblemPrompt);
-      console.log(result);
-
-      let finalProblem;
-      try {
-        const problemId = JSON.parse(result)._id;
-        finalProblem = candidateProblems.find(p => p._id.toString() === problemId);
-      } catch (e) {
-        return res.status(500).json({ error: "LLM did not return valid JSON." });
-      }
-
-      if (!(await Performance.findOne({ userId, problemId: finalProblem._id }))) {
-        await Performance.create({
-          userId,
-          problemId: finalProblem._id,
-          topic: finalProblem.topic,
-          difficulty: finalProblem.difficulty
-        });
-      }
-      res.json({ passed: false, outputs, error, suggestedProblem: finalProblem, feedback })
-      return;
-    }
 
     return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
   }
@@ -890,70 +772,6 @@ exports.runSolution = async (req, res) => {
 
   let feedback;
   if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
-  if(turn.version != 2 && performance.attempts % 3 == 0 && performance.attempts != 0) {
-    const easierDifficulty = {
-      "hard": "medium",
-      "medium": "easy",
-      "easy": "basic",
-      "basic": "basic"
-    }
-    // find an easier problem in same topic that has not been solved yet, if all easier problems are solved, get all problems in the current difficulty that has not been solved yet
-    const easierProblems = await Problem.find({
-      topic: problem.topic, 
-      difficulty: easierDifficulty[problem.difficulty] 
-    }).lean();
-    const solvedIds = new Set((await Performance.find({ userId, topic: problem.topic, passed: true })).map(p => p.problemId.toString()));
-    let candidateProblems = easierProblems.filter(p => !solvedIds.has(p._id.toString()));
-    if(candidateProblems.length == 0) {
-      candidateProblems = (await Problem.find({ 
-        topic: problem.topic, 
-        difficulty: problem.difficulty 
-      }).lean()).filter(p => !solvedIds.has(p._id.toString()));
-    }
-    
-    if(candidateProblems.length == 0) {
-      return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
-    }
-    if(candidateProblems.length == 1) {
-      return res.json({ passed: false, outputs, error, suggestedProblem: candidateProblems[0], feedback,  });
-    }
-
-    const suggestProblemPrompt = `
-      You are an adaptive problem recommender for programming learners.
-      Based on the user's struggle with the following problem:
-      Problem: ${problem.title}
-      Description: ${problem.description}
-      User's Code:
-      ${code}
-
-      Suggest ONE easier problem from the following list that will help them build up to solving the original problem. If none are suitable, respond with null.
-      ${JSON.stringify(candidateProblems, null, 2)}
-
-      Output ONLY the EXACT raw JSON object of the selected problem containing the "_id" field only, with no extra text, formatting, or commentary.
-    `;
-
-    const result = await llmService.getLLMResponse(suggestProblemPrompt);
-    console.log(result);
-
-    let finalProblem;
-    try {
-      const problemId = JSON.parse(result)._id;
-      finalProblem = candidateProblems.find(p => p._id.toString() === problemId);
-    } catch (e) {
-      return res.status(500).json({ error: "LLM did not return valid JSON." });
-    }
-
-    if (!(await Performance.findOne({ userId, problemId: finalProblem._id }))) {
-      await Performance.create({
-        userId,
-        problemId: finalProblem._id,
-        topic: finalProblem.topic,
-        difficulty: finalProblem.difficulty
-      });
-    }
-    res.json({ passed: false, outputs, error, suggestedProblem: finalProblem, feedback })
-    return;
-  }
   res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
 };
 
