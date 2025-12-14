@@ -667,6 +667,8 @@ exports.runSolution = async (req, res) => {
     const freshAttacker = freshArmies.find(div => div._id.toString() === attacker._id.toString());
     const freshDefender = freshArmies.find(div => div._id.toString() === defender._id.toString());
 
+    let capturedCity = null;
+
     if (freshAttacker && freshDefender) {
       if (freshAttacker.faction === "allied") {
         try {
@@ -686,7 +688,6 @@ exports.runSolution = async (req, res) => {
         // Check if the captured province is a city and award XP
         const allProvinces = readProvincesFile();
         const capturedProvince = allProvinces.find(p => p.id === freshDefender.position);
-        let capturedCity = null;
         if (capturedProvince && capturedProvince.type === "city") {
           const user = await User.findById(userId);
           user.xp = (user.xp || 0) + 200;
