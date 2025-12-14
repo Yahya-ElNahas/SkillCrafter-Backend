@@ -141,3 +141,24 @@ exports.checkAndAwardTurnAchievement = async (userId, turnCount) => {
     return [];
   }
 };
+
+exports.getAllUsersLevels = async (req, res) => {
+  try {
+    // return username, level, xp for all users
+    const users = await User.find();
+    const usersLevel = users.map(user => {
+      const xp = user.xp || 0;
+      const level = Math.floor((Math.sqrt(1 + (8 * xp) / 100) - 1) / 2) + 1;
+      return {
+        username: user.username,
+        level,
+        xp
+      };
+    });
+
+    res.json({ users: usersLevel });
+  } catch (error) {
+    console.error('Error fetching users level:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
