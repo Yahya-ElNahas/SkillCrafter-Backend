@@ -1,8 +1,9 @@
-const { getAdjacency } = require("./provinceController");
+const { getAdjacency, readProvincesFile } = require("./provinceController");
 const turnModel = require("../models/turn");
 const Armies = require("../models/armies");
 const tokenService = require("../services/tokenService");
 const { getProvincesWithControllers } = require("./provinceController");
+const User = require("../models/user");
 
 exports.getArmies = async (req, res) => {
   try {
@@ -104,8 +105,19 @@ exports.moveDivision = async (req, res) => {
     turn.controlledProvinces = provinces;
     await turn.save();
 
+    // Check if the moved-to province is a city and award XP
+    const allProvinces = readProvincesFile();
+    const movedProvince = allProvinces.find(p => p.id === position);
+    let capturedCity = null;
+    if (movedProvince && movedProvince.type === "city") {
+      const user = await User.findById(userId);
+      user.xp = (user.xp || 0) + 200;
+      await user.save();
+      capturedCity = movedProvince.name;
+    }
+
     const freshArmies = await Armies.find({ turnId: turn._id }).lean().exec();
-    res.json({ message: "Division moved successfully.", armies: freshArmies, provinces: getProvincesWithControllers(turn) });
+    res.json({ message: "Division moved successfully.", armies: freshArmies, provinces: getProvincesWithControllers(turn), capturedCity });
   } catch (err) {
     console.error("moveDivision error:", err);
     res.status(500).json({ error: "Failed to move division." });

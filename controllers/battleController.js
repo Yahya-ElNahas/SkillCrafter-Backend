@@ -7,7 +7,7 @@ const turnModel = require("../models/turn");
 const { retreat } = require("./armyController");
 const Armies = require("../models/armies");
 const tokenService = require("../services/tokenService");
-const { getProvincesWithControllers } = require("./provinceController");
+const { getProvincesWithControllers, readProvincesFile } = require("./provinceController");
 const { checkAndAwardProblemAchievement, checkAndAwardTurnAchievement } = require("./achievementController");
 const User = require("../models/user");
 
@@ -682,6 +682,17 @@ exports.runSolution = async (req, res) => {
 
         await retreat(freshDefender, turn._id);
         await turn.save();
+
+        // Check if the captured province is a city and award XP
+        const allProvinces = readProvincesFile();
+        const capturedProvince = allProvinces.find(p => p.id === freshDefender.position);
+        let capturedCity = null;
+        if (capturedProvince && capturedProvince.type === "city") {
+          const user = await User.findById(userId);
+          user.xp = (user.xp || 0) + 200;
+          await user.save();
+          capturedCity = capturedProvince.name;
+        }
       } else {
         try {
           await Armies.findByIdAndUpdate(
@@ -732,7 +743,8 @@ exports.runSolution = async (req, res) => {
         victoryMessage,
         armies: updatedArmies,
         provinces: getProvincesWithControllers(freshTurn),
-        turnEnding: freshTurn ? freshTurn.isEnding : false
+        turnEnding: freshTurn ? freshTurn.isEnding : false,
+        capturedCity
       });
     }
   }
