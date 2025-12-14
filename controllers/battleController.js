@@ -54,6 +54,14 @@ exports.initiateBattle = async (req, res) => {
     return res.json({ attacker, defender, position, problem });
   }
 
+  // Check if topic is mastered (no unsolved problems)
+  const allProblems = await Problem.find({ topic }).select('_id');
+  const solvedProblemIds = new Set((await Performance.find({ userId, topic, passed: true })).map(p => p.problemId.toString()));
+  const unsolvedCount = allProblems.length - solvedProblemIds.size;
+  if (unsolvedCount === 0) {
+    return res.json({ mastered: true });
+  }
+
   const unfinishedPerformances = await Performance.find({
     userId,
     topic,
@@ -181,12 +189,20 @@ exports.initiateBattle = async (req, res) => {
   try {
     const problemId = JSON.parse(result)._id;
     finalProblem = filteredProblems.find(p => p._id.toString() === problemId);
+    if (!finalProblem) {
+      throw new Error("Problem not found");
+    }
     if(flag) {
       chosenDifficulty = finalProblem.difficulty;
       chosenAction = `${chosenTopic}_${chosenDifficulty}`;
     }
   } catch (e) {
-    return res.status(500).json({ error: "LLM did not return valid JSON." });
+    // Fallback to random selection
+    finalProblem = filteredProblems[Math.floor(Math.random() * filteredProblems.length)];
+    if(flag) {
+      chosenDifficulty = finalProblem.difficulty;
+      chosenAction = `${chosenTopic}_${chosenDifficulty}`;
+    }
   }
 
   if (!(await Performance.findOne({ userId, problemId: finalProblem._id }))) {
