@@ -21,15 +21,19 @@ exports.getUser = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const { username, email, password, version, gender } = req.body;
-    const user = new User({ username, email, password, version, gender });
+    const { username, password, gender } = req.body;
+
+    // Determine version based on current user distribution
+    const version1Count = await User.countDocuments({ version: 1 });
+    const version3Count = await User.countDocuments({ version: 3 });
+    const version = version1Count > version3Count ? 3 : 1;
+
+    const user = new User({ username, password, version, gender });
     await user.save();
     
     const turn = new Turn({ userId: user._id, version });
     await turn.save();
 
-    // Create initial armies for the user. createUnit is an INSTANCE method,
-    // so we instantiate and then save each document.
     const initialUnits = [
       ['infantry', 'allied', 'path33'],
       ['infantry', 'allied', 'path49'],
@@ -42,10 +46,12 @@ exports.createUser = async (req, res) => {
       ['armor',    'enemy',  'path44'],
     ];
 
-    for (const [type, faction, position] of initialUnits) {
-      const doc = new Armies({ turnId: turn._id });
-      await doc.createUnit(turn._id, type, faction, position);
-      await doc.save();
+    if(version === 1) {
+      for (const [type, faction, position] of initialUnits) {
+        const doc = new Armies({ turnId: turn._id });
+        await doc.createUnit(turn._id, type, faction, position);
+        await doc.save();
+      }
     }
 
     res.status(201).json({ message: 'User created successfully', user });
@@ -54,9 +60,6 @@ exports.createUser = async (req, res) => {
     if (error.code === 11000) {
       if(error.keyPattern.username) {
         return res.status(400).json({ message: 'Username already exists' });
-      }
-      if(error.keyPattern.email) {
-        return res.status(400).json({ message: 'Email already exists' });
       }
     }
     res.status(500).json({ message: 'Internal server error' });
@@ -95,11 +98,7 @@ exports.loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
     let user;
-    if (username.includes('@')) {
-      user = await User.findOne({ email: username });
-    } else {
-      user = await User.findOne({ username });
-    }
+    user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -108,7 +107,7 @@ exports.loginUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const payload = { id: user._id, username: user.username, email: user.email };
+    const payload = { id: user._id, username: user.username };
     const token = tokenService.generate(payload);
 
     const cookieOptions = {

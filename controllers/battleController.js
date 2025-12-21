@@ -33,7 +33,7 @@ exports.initiateBattle = async (req, res) => {
     return res.status(400).json({ error: "Cannot initiate battle while turn is ending." });
   }
 
-  if(attacker && attacker.type === "infantry" && defender.type === "armor") {
+  if(attacker && attacker.faction === "allied" && attacker.type === "infantry" && defender.type === "armor") {
     return res.status(400).json({ error: "Infantry units cannot attack armored units. Choose a different attacker." });
   }
 
@@ -54,6 +54,7 @@ exports.initiateBattle = async (req, res) => {
     return res.json({ attacker, defender, position, problem });
   }
 
+  
   // Check if topic is mastered (no unsolved problems)
   const allProblems = await Problem.find({ topic }).select('_id');
   const solvedProblemIds = new Set((await Performance.find({ userId, topic, passed: true })).map(p => p.problemId.toString()));
@@ -183,8 +184,10 @@ exports.initiateBattle = async (req, res) => {
   `;
 
   let result; 
+
   if(performances.length > 0) result = await llmService.getLLMResponse(prompt);
   else result = JSON.stringify(filteredProblems[Math.floor(Math.random() * filteredProblems.length)]); // random for first problem
+  
   let finalProblem;
   try {
     const problemId = JSON.parse(result)._id;
@@ -213,11 +216,6 @@ exports.initiateBattle = async (req, res) => {
       difficulty: finalProblem.difficulty
     });
   }
-
-  // Save chosen action for RL update after solution
-  // req.session = req.session || {};
-  // req.session.rlState = userState;
-  // req.session.rlAction = chosenAction;
 
   res.json({ attacker, defender, position, problem: finalProblem, rlState: userState, rlAction: chosenAction }); 
 };
@@ -258,11 +256,8 @@ exports.runSolution = async (req, res) => {
     const now = new Date();
     const timeSpent = performance.date ? Math.floor((now - performance.date) / 1000) : 0;
     performance.timeSpent = (performance.timeSpent || 0) + timeSpent;
-    
-    
-    if(code === "test") allPassed = true; // for testing purposes only
-    
-    if (error && code !== "test") {
+        
+    if (error) {
       const errorIndex = error.indexOf('error:');
       if (errorIndex !== -1) {
         error = error.substring(errorIndex + 6).trim();
@@ -310,7 +305,7 @@ exports.runSolution = async (req, res) => {
     }
 
     if (allPassed) {
-      performance.passed = true;
+      if(code !== "test") performance.passed = true;
       performance.score = (allPassed / performance.attempts * 50)
         + (Math.max(0, 20 - performance.hintsUsed * 5))
         + (Math.max(0, 20 - performance.attempts * 5))
@@ -334,7 +329,7 @@ exports.runSolution = async (req, res) => {
       user.xp = (user.xp || 0) + xpGained;
       await user.save();
 
-      const victoryMessage = `You have successfully solved the problem.
+      const victoryMessage = `You have won the battle.
 
 🎖️ Rewards Earned:
 +${xpGained} XP
@@ -380,7 +375,7 @@ exports.runSolution = async (req, res) => {
   `;
 
     let feedback;
-    if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
+    if(turn.version != 2) feedback = await llmService.getLLMResponse(feedbackPrompt);
 
     return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
   }
@@ -419,11 +414,8 @@ exports.runSolution = async (req, res) => {
     const now = new Date();
     const timeSpent = Math.floor((now - performance.date) / 1000);
     performance.timeSpent = (performance.timeSpent || 0) + timeSpent;
-    
-    
-    if(code === "test") allPassed = true; // for testing purposes only
-    
-    if (error && code !== "test") {
+        
+    if (error) {
       const errorIndex = error.indexOf('error:');
       if (errorIndex !== -1) {
         error = error.substring(errorIndex + 6).trim();
@@ -485,7 +477,7 @@ exports.runSolution = async (req, res) => {
 
       const updatedArmies = await Armies.find({ turnId: turn._id }).lean().exec();
 
-      performance.passed = true;
+      if(code !== "test") performance.passed = true;
       performance.score = (allPassed / performance.attempts * 50)
         + (Math.max(0, 20 - performance.hintsUsed * 5))
         + (Math.max(0, 20 - performance.attempts * 5))
@@ -511,7 +503,7 @@ exports.runSolution = async (req, res) => {
 
       const freshTurn = await turnModel.findOne({ userId: userId });
 
-      const victoryMessage = `You have successfully completed the challenge.
+      const victoryMessage = `You have won the battle.
 
 🎖️ Rewards Earned:
 +${xpGained} XP
@@ -561,7 +553,7 @@ exports.runSolution = async (req, res) => {
   `;
 
     let feedback;
-    if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
+    if(turn.version != 2) feedback = await llmService.getLLMResponse(feedbackPrompt);
 
     return res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
   }
@@ -609,11 +601,8 @@ exports.runSolution = async (req, res) => {
   const now = new Date();
   const timeSpent = Math.floor((now - performance.date) / 1000);
   performance.timeSpent = (performance.timeSpent || 0) + timeSpent;
-  
-  
-  if(code === "test") allPassed = true; // for testing purposes only
-  
-  if (error && code !== "test") {
+    
+  if (error) {
     const errorIndex = error.indexOf('error:');
     if (errorIndex !== -1) {
       error = error.substring(errorIndex + 6).trim();
@@ -706,7 +695,7 @@ exports.runSolution = async (req, res) => {
       const updatedArmies = await Armies.find({ turnId: turn._id }).lean().exec();
 
 
-      performance.passed = true;
+      if(code !== "test") performance.passed = true;
       performance.score = (allPassed / performance.attempts * 50)
         + (Math.max(0, 20 - performance.hintsUsed * 5))
         + (Math.max(0, 20 - performance.attempts * 5))
@@ -732,7 +721,7 @@ exports.runSolution = async (req, res) => {
 
       const freshTurn = await turnModel.findOne({ userId: userId });
 
-      const victoryMessage = `You have successfully completed the challenge.
+      const victoryMessage = `You have won the battle.
 
 🎖️ Rewards Earned:
 +${xpGained} XP
@@ -784,7 +773,7 @@ exports.runSolution = async (req, res) => {
   `;
 
   let feedback;
-  if(turn.version != 2 && performance.attempts % 3 != 0) feedback = await llmService.getLLMResponse(feedbackPrompt);
+  if(turn.version != 2) feedback = await llmService.getLLMResponse(feedbackPrompt);
   res.json({ passed: false, outputs, error, suggestedProblem: null, feedback });
 };
 
@@ -817,6 +806,8 @@ exports.getHint = async (req, res) => {
     The user can also ask you questions written as comments in their code, so address those questions in your hint if you see any.
     If the user's code is correct and sufficient to solve the problem, acknowledge their success and encourage them to test it, the solution doesn't have to be perfect or optimal.
     If there is an incorrect part in the user's code, point it out and explain why it is incorrect and how to fix it or remove it.
+    If the user is stuck or has made no progress, make the hint more explicit than previous hints, while still not giving the full solution.
+    If helpful, you may include a very small code fragment (1-2 lines) that illustrates the idea without solving the entire problem.
     
     Problem: ${problem.title}
     Description: ${problem.description}

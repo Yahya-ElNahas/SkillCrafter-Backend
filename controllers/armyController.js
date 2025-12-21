@@ -100,21 +100,21 @@ exports.moveDivision = async (req, res) => {
       { new: true, upsert: true }
     ).exec();
 
-    const provinces = turn.controlledProvinces;
-    provinces.push(position);
-    turn.controlledProvinces = provinces;
-    await turn.save();
-
     // Check if the moved-to province is a city and award XP
     const allProvinces = readProvincesFile();
     const movedProvince = allProvinces.find(p => p.id === position);
     let capturedCity = null;
-    if (movedProvince && movedProvince.type === "city") {
+    if (movedProvince && movedProvince.type === "city" && !turn.controlledProvinces.includes(position)) {
       const user = await User.findById(userId);
       user.xp = (user.xp || 0) + 200;
       await user.save();
       capturedCity = movedProvince.name;
     }
+
+    const provinces = turn.controlledProvinces;
+    provinces.push(position);
+    turn.controlledProvinces = provinces;
+    await turn.save();
 
     const freshArmies = await Armies.find({ turnId: turn._id }).lean().exec();
     res.json({ message: "Division moved successfully.", armies: freshArmies, provinces: getProvincesWithControllers(turn), capturedCity });

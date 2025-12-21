@@ -54,6 +54,7 @@ exports.checkAndAwardProblemAchievement = async (userId, problem, performance) =
   try {
     const user = await User.findById(userId);
     if (!user) return [];
+    if(user.version !== 1) return [];
 
     const userAchievements = user.achievements || [];
     const newAchievements = [];
@@ -115,6 +116,7 @@ exports.checkAndAwardTurnAchievement = async (userId, turnCount) => {
   try {
     const user = await User.findById(userId);
     if (!user) return [];
+    if(user.version !== 1) return [];
 
     const userAchievements = user.achievements || [];
     const newAchievements = [];
@@ -145,7 +147,7 @@ exports.checkAndAwardTurnAchievement = async (userId, turnCount) => {
 exports.getAllUsersLevels = async (req, res) => {
   try {
     // return username, level, xp for all users
-    const users = await User.find();
+    const users = await User.find({version: 1});
     const usersLevel = users.map(user => {
       const xp = user.xp || 0;
       const level = Math.floor((Math.sqrt(1 + (8 * xp) / 100) - 1) / 2) + 1;

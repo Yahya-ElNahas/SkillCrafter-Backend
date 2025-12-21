@@ -30,7 +30,8 @@
   },
   {
     "id": "path29",
-    "type": "province"
+    "type": "city",
+    "name": "Code City"
   },
   {
     "id": "path4",
@@ -38,7 +39,8 @@
   },
   {
     "id": "path37",
-    "type": "province"
+    "type": "city",
+    "name": "Village of Programs"
   },
   {
     "id": "path38",
@@ -54,7 +56,7 @@
   },
   {
     "id": "path46",
-    "type": "province"
+    "type": "factory"
   },
   {
     "id": "path10",

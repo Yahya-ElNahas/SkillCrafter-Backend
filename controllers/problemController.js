@@ -3,26 +3,12 @@ const Performance = require('../models/performance');
 const tokenService = require('../services/tokenService');
 
 exports.getProblemsByTopic = async (req, res) => {
-    const token =  req.cookies.token;
-    if (!token) return res.status(401).json({ error: "Authentication required" });
-    let decodedToken;
-    try {
-    decodedToken = tokenService.verify(token);
-    } catch (err) {
-    return res.status(401).json({ error: "Invalid token" });
-    }
-    const userId = decodedToken.id;
   try {
+    // return only all problem titles and descriptions for a given topic
     const { topic } = req.body;
-    const problems = await Problem.find({ topic }).lean().exec();
-    const performances = await Performance.find({ userId, topic }).lean().exec();
-    for (const problem of problems) {
-      const performance = performances.find(p => p.problemId.toString() === problem._id.toString());
-      if (performance && performance.passed) {
-        problem.solved = true;
-      }
-    }
-    res.json({ problems });
+    const problems = await Problem.find({ topic }, { title: 1, description: 1, difficulty: 1 }).lean().exec();
+
+    res.json(problems);
   } catch (err) {
     console.error("getProblemsByTopic error:", err);
     res.status(500).json({ error: "Failed to get problems." });
