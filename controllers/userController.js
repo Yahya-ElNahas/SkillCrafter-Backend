@@ -25,8 +25,8 @@ exports.createUser = async (req, res) => {
 
     // Determine version based on current user distribution
     const version1Count = await User.countDocuments({ version: 1 });
-    const version3Count = await User.countDocuments({ version: 3 });
-    const version = version1Count > version3Count ? 3 : 1;
+    const version3Count = await User.countDocuments({ version: 2 });
+    const version = version1Count > version3Count ? 2 : 1;
 
     const user = new User({ username, password, version, gender });
     await user.save();
@@ -46,7 +46,7 @@ exports.createUser = async (req, res) => {
       ['armor',    'enemy',  'path44'],
     ];
 
-    if(version === 1) {
+    if(version !== 3) {
       for (const [type, faction, position] of initialUnits) {
         const doc = new Armies({ turnId: turn._id });
         await doc.createUnit(turn._id, type, faction, position);

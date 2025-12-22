@@ -305,7 +305,7 @@ exports.runSolution = async (req, res) => {
     }
 
     if (allPassed) {
-      if(code !== "test") performance.passed = true;
+      performance.passed = true;
       performance.score = (allPassed / performance.attempts * 50)
         + (Math.max(0, 20 - performance.hintsUsed * 5))
         + (Math.max(0, 20 - performance.attempts * 5))
